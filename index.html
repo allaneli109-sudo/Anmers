@@ -2,267 +2,37 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel do Clã Aimmers</title>
+
   <style>
-    /* RESET & BASE */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(circle at 10% 10%, #0f1724 0%, #07090b 60%);
-      color:#e6e9ee;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:24px;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* CONTAINER */
-    .card {
-      width:100%;
-      max-width:420px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:16px;
-      padding:18px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(10px) saturate(120%);
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top, #1a1f2b, #0b0e13);
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
     }
 
-    /* BANNER */
-    .banner {
-      width:100%;
-      border-radius:12px;
-      overflow:hidden;
-      margin-bottom:16px;
-      border:1px solid rgba(255,255,255,0.04);
-    }
-    .banner img{ width:100%; height:auto; display:block; }
-
-    /* TITLE + SUB */
-    h1{ font-size:22px; margin-bottom:6px; color:#fff}
-    p.lead{ color: #bfc6cf; margin-bottom:14px; line-height:1.4 }
-
-    /* STATUS BOXES */
-    .status-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:14px }
-    .status {
-      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));
-      padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);
-      color:#cfd6db;
-      min-height:64px;
-    }
-    .status h3{ font-size:12px; color:#9fb0c6; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em }
-    .status strong{ display:block; font-size:18px; color:#fff }
-
-    /* SHORTCUTS */
-    .shortcut{ margin-bottom:10px; padding:12px; border-radius:10px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center }
-    .shortcut p{ color:#d2d9df; font-size:14px }
-    .badge{ font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); color:#cbd6dd }
-
-    /* FILTERS */
-    .controls{ display:flex; gap:10px; margin:14px 0 18px; align-items:center; flex-wrap:wrap }
-    .select, .multi {
-      background: rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; color:#e6eef8;
-      font-size:14px;
-    }
-    .checkbox-list{ display:flex; gap:8px; flex-wrap:wrap }
-    .checkbox-list label{
-      background: rgba(255,255,255,0.02); padding:8px 10px; border-radius:8px; cursor:pointer; border:1px solid rgba(255,255,255,0.02);
-      font-size:13px; color:#d7e1ea;
-    }
-    .checkbox-list input{ display:none }
-    .checkbox-list input:checked + span{ background: linear-gradient(90deg,#ff9a3c,#ff6a3c); color:#08121a; font-weight:600; border:0 }
-
-    /* VISIT BUTTONS */
-    .actions { display:flex; gap:10px; margin-top:14px }
-    .btn {
-      padding:12px 16px; border-radius:999px; border:0; cursor:pointer; font-weight:600;
-    }
-    .primary{ background: linear-gradient(90deg,#ff8a2a,#ffc24a); color:#071018; }
-    .ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:#d9e2e9 }
-
-    /* CARDS LIST (exemplo de membros / ligas) */
-    .cards{ margin-top:14px; display:grid; gap:10px }
-    .card-item{ padding:12px; border-radius:10px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02); color:#d7e2ea }
-    .muted{ color:#9fb0c6; font-size:13px }
-
-    /* FOOT */
-    .small{ font-size:12px; color:#9fb0c6; margin-top:12px; text-align:center }
-    @media (max-width:420px){ .card{ padding:14px } h1{ font-size:20px } }
-  </style>
-</head>
-<body>
-  <main class="card" role="main">
-    <!-- BANNER: usa o arquivo já carregado em images/banner-clan.png -->
-    <div class="banner">
-      <img src="images/banner-clan.png" alt="Banner Clã Aimmers - Painel" />
-    </div>
-
-    <h1>Painel do Clã Aimmers</h1>
-    <p class="lead">Versão inicial do painel. Conecta guerras, ligas e membros por nível de Centro de Vila (TH).</p>
-
-    <!-- Status Boxes -->
-    <div class="status-grid">
-      <div class="status">
-        <h3>Guerras</h3>
-        <strong id="war-count">0 em andamento</strong>
-        <div class="muted">Esta informação será automática depois (API).</div>
-      </div>
-      <div class="status">
-        <h3>Membros</h3>
-        <strong id="members-count">—</strong>
-        <div class="muted">Lista virá da API do Clash of Clans.</div>
-      </div>
-    </div>
-
-    <!-- Shortcuts -->
-    <div class="shortcut">
-      <p>Sala de Guerra — Controle de ataques, quem atacou e quem faltou.</p>
-      <span class="badge">em breve</span>
-    </div>
-    <div class="shortcut">
-      <p>Membros & Funções — Organizar líderes, co-leaders e recrutamento.</p>
-      <span class="badge">planejando</span>
-    </div>
-    <div class="shortcut">
-      <p>Regras & Recrutamento — Página pública com requisitos e contato.</p>
-      <span class="badge">rascunho</span>
-    </div>
-
-    <!-- CONTROLES: Modo (Guerra/Liga), Filtro TH -->
-    <div class="controls" aria-label="Controles">
-      <div class="select" style="display:flex;gap:8px;align-items:center">
-        <label style="font-size:13px;color:#b7c6d4;margin-right:6px">Modo:</label>
-        <select id="modeSelect" class="select" style="background:transparent;border:none;outline:none;color:inherit">
-          <option value="both">Guerra + Liga</option>
-          <option value="war">Guerra</option>
-          <option value="league">Liga</option>
-        </select>
-      </div>
-
-      <div style="flex:1">
-        <label style="font-size:13px;color:#b7c6d4;display:block;margin-bottom:6px">Filtrar por Centro de Vila (TH)</label>
-        <div class="checkbox-list" id="thFilters">
-          <!-- inputs criados por JS -->
-        </div>
-      </div>
-    </div>
-
-    <!-- ACTIONS -->
-    <div class="actions">
-      <button class="btn primary" id="enterPanel">Entrar no painel</button>
-      <button class="btn ghost" id="visitPublic">Ver versão pública</button>
-    </div>
-
-    <!-- Exemplos de conteúdo que muda conforme filtros -->
-    <div class="cards" id="dynamicList">
-      <!-- JS popula -->
-    </div>
-
-    <div class="small">Protótipo · v0.1 — Clã Aimmers</div>
-  </main>
-
-  <script>
-    /************************************************************************
-     * Dados de exemplo (substituir por chamada à API depois)
-     * cada item tem { id, title, mode: 'war'|'league'|'both', th: [16,17,18], description }
-     *************************************************************************/
-    const sampleItems = [
-      { id:1, title:'Guerra Amistosa - 18/17', mode:'war', th:[18,17], description:'Guerra teste com TH18 e TH17' },
-      { id:2, title:'Liga - Divisão Ouro', mode:'league', th:[18,17,16], description:'Participantes na liga (multi-TH)' },
-      { id:3, title:'Treino 5x5 - somente TH16', mode:'war', th:[16], description:'Treino entre membros TH16' },
-      { id:4, title:'Evento Misto', mode:'both', th:[15,16,17,18], description:'Evento aberto a múltiplos TH' },
-    ];
-
-    // Lista de TH suportados (você pode estender)
-    const thList = [15,16,17,18];
-
-    // Cria checkbox UI de TH
-    const thFiltersEl = document.getElementById('thFilters');
-    thList.forEach(th => {
-      const id = 'th_'+th;
-      const wrapper = document.createElement('label');
-      wrapper.setAttribute('for', id);
-      wrapper.innerHTML = `<input type="checkbox" id="${id}" value="${th}" checked /><span>TH${th}</span>`;
-      thFiltersEl.appendChild(wrapper);
-
-      // ao clicar atualiza listagem
-      wrapper.querySelector('input').addEventListener('change', renderFiltered);
-    });
-
-    // Modo select
-    document.getElementById('modeSelect').addEventListener('change', renderFiltered);
-
-    // Função que pega filtros selecionados
-    function getSelectedTHs(){
-      return [...thFiltersEl.querySelectorAll('input:checked')].map(i => parseInt(i.value));
-    }
-    function getSelectedMode(){
-      return document.getElementById('modeSelect').value; // 'war','league','both'
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(30px);
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
     }
 
-    // Renderiza items que batem com filtros
-    function renderFiltered(){
-      const selectedTH = getSelectedTHs();
-      const mode = getSelectedMode();
-      const container = document.getElementById('dynamicList');
-      container.innerHTML = '';
-
-      // filtra sampleItems por interseção TH e por modo
-      const results = sampleItems.filter(item => {
-        // modo: allow if item.mode === mode OR item.mode==='both' OR mode==='both'
-        if(mode !== 'both' && item.mode !== 'both' && item.mode !== mode) return false;
-        // TH interseção
-        const intersection = item.th.filter(t => selectedTH.includes(t));
-        return intersection.length > 0;
-      });
-
-      if(results.length === 0){
-        const no = document.createElement('div');
-        no.className = 'card-item';
-        no.textContent = 'Nenhum evento ou liga corresponde aos filtros selecionados.';
-        container.appendChild(no);
-        return;
-      }
-
-      // monta cards
-      results.forEach(r => {
-        const el = document.createElement('div');
-        el.className = 'card-item';
-        el.innerHTML = `
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong style="font-size:15px">${r.title}</strong>
-            <span class="muted">${r.mode === 'both' ? 'Guerra+Liga' : (r.mode==='war'?'Guerra':'Liga')}</span>
-          </div>
-          <div style="margin-top:8px;color:#d9e6ef">${r.description}</div>
-          <div style="margin-top:8px;font-size:13px;color:#99a9b8">Permissão: TH ${r.th.join(', ')}</div>
-        `;
-        container.appendChild(el);
-      });
-    }
-
-    // Inicializa contadores e lista
-    function init(){
-      // exemplo: atualiza contadores com dados de exemplo (substituir por API)
-      document.getElementById('war-count').textContent = '0 em andamento';
-      document.getElementById('members-count').textContent = '—';
-
-      renderFiltered();
-    }
-
-    // ações dos botões (só navegação de exemplo)
-    document.getElementById('enterPanel').addEventListener('click', () => {
-      // se no futuro for rota interna pode abrir painel
-      alert('Entrando no painel (futuro link interno).');
-    });
-    document.getElementById('visitPublic').addEventListener('click', () => {
-      window.open(window.location.href, '_blank');
-    });
-
-    init();
-  </script>
-</body>
-</html>
+    .banner img {
+      width: 100%;
+      border-radius:
