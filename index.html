@@ -4,261 +4,195 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Painel do Clã Aimmers</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
 
+  <!-- Estilos principais -->
+  <style>
+    /* Reset simples */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; }
+
+    /* Fundo escuro com leve gradiente */
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1f2933 0, #020617 55%, #000 100%);
-      color: #e5e7eb;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(circle at 20% 10%, rgba(10,14,23,0.6), rgba(2,6,12,1));
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       display: flex;
+      align-items: flex-start;
       justify-content: center;
-      padding: 16px;
+      padding: 36px 18px;
     }
 
-    .wrapper {
+    /* Container central */
+    .wrap {
       width: 100%;
-      max-width: 480px;
+      max-width: 920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(2,6,12,0.6);
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
-    .card {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 16px;
-      padding: 20px 18px 22px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      backdrop-filter: blur(8px);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.12);
-      color: #bbf7d0;
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      margin-bottom: 10px;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
-    }
-
-    h1 {
-      font-size: 24px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: #9ca3af;
+    /* Banner - imagem responsiva */
+    .banner {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      display: block;
       margin-bottom: 18px;
+      background: #0b1116;
+    }
+    .banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      -webkit-user-drag: none;
+      user-select: none;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+    /* Cabeçalho do painel */
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+    header p.lead {
+      color: #b7c4d9;
       margin-bottom: 16px;
     }
 
-    .tile {
-      background: linear-gradient(135deg, #111827, #020617);
-      border-radius: 12px;
-      padding: 10px 10px 11px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
+    /* Cartões */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 8px;
     }
-
-    .tile-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #6b7280;
-      margin-bottom: 4px;
-    }
-
-    .tile-value {
-      font-size: 16px;
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .tile-hint {
-      font-size: 11px;
-      color: #9ca3af;
-      margin-top: 3px;
-    }
-
-    .section-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #6b7280;
-      margin-bottom: 6px;
-    }
-
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .list-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 10px;
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      padding: 14px;
       border-radius: 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(55, 65, 81, 0.9);
+      border: 1px solid rgba(255,255,255,0.03);
     }
+    .card h3 { font-size: 14px; color: #a9bfd8; margin-bottom: 8px; }
+    .card .big { font-weight: 700; font-size: 20px; color: #ffffff; }
 
-    .list-title {
-      font-size: 13px;
-      font-weight: 500;
+    /* Atalhos lista */
+    .shortcuts { margin-top: 18px; display: grid; gap: 10px; }
+    .shortcut {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.01);
     }
+    .shortcut .title { color:#d7e6ff; font-weight:600; }
+    .chip { background: rgba(255,255,255,0.03); color: #b7c4d9; padding:6px 8px; border-radius:999px; font-size:12px; }
 
-    .list-desc {
-      font-size: 11px;
-      color: #9ca3af;
-    }
-
-    .pill {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: #e5e7eb;
-    }
-
-    .footer {
-      margin-top: 6px;
-      font-size: 11px;
-      color: #6b7280;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-strong {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
-
-    .button-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
+    /* Botões */
+    .actions { margin-top: 20px; display:flex; gap: 12px; }
     .btn {
-      flex: 1;
+      padding: 10px 16px;
       border-radius: 999px;
-      padding: 8px 10px;
-      font-size: 13px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .btn.primary {
+      background: linear-gradient(90deg,#ff8a00,#ffc84d);
+      color: #08121a;
+      box-shadow: 0 6px 18px rgba(255,138,0,0.14);
+    }
+    .btn.ghost {
       background: transparent;
-      color: #e5e7eb;
-      text-align: center;
-      text-decoration: none;
+      color: #cfe4ff;
+      border: 1px solid rgba(255,255,255,0.04);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #f97316, #facc15);
-      border-color: transparent;
-      color: #111827;
-      font-weight: 600;
+    /* Responsividade */
+    @media (max-width:720px){
+      .cards { grid-template-columns: 1fr; }
+      header h1 { font-size: 22px; }
+      .wrap { padding: 18px; }
     }
 
-    @media (min-width: 640px) {
-      h1 {
-        font-size: 26px;
-      }
-      .card {
-        padding: 24px 22px 24px;
-      }
-    }
+    /* Pequeno rodapé */
+    footer { margin-top: 18px; color: #9fb2d0; font-size:13px; opacity:0.9; }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="card">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        Clã conectado (protótipo)
+  <main class="wrap" role="main" aria-labelledby="title">
+    <!-- ---------- BANNER ---------- 
+         Substitua a imagem em /imagens/banner-clan.png se quiser outra arte.
+         O arquivo que você já enviou deve ficar com esse nome e caminho.
+    -->
+    <a class="banner" href="/" aria-label="Banner do Clã Aimmers">
+      <img src="./imagens/banner-clan.png" alt="Banner Clã Aimmers - Painel Oficial">
+    </a>
+
+    <!-- CABEÇALHO -->
+    <header>
+      <h1 id="title">Painel do Clã Aimmers</h1>
+      <p class="lead">Versão inicial do painel. Em breve vamos conectar guerras, ataques e membros em tempo real.</p>
+    </header>
+
+    <!-- CARTÕES INFORMAÇÕES -->
+    <section class="cards" aria-label="Resumo">
+      <div class="card">
+        <h3>GUERRAS</h3>
+        <div class="big">0 em andamento</div>
+        <div style="margin-top:8px;color:#9fb2d0;font-size:13px;">Esta informação será automática depois.</div>
+      </div>
+      <div class="card">
+        <h3>MEMBROS</h3>
+        <div class="big">—</div>
+        <div style="margin-top:8px;color:#9fb2d0;font-size:13px;">Lista virá da API do Clash of Clans.</div>
+      </div>
+    </section>
+
+    <!-- ATALHOS -->
+    <section class="shortcuts" aria-label="Atalhos rápidos">
+      <div class="shortcut">
+        <div>
+          <div class="title">Sala de Guerra</div>
+          <div style="color:#9fb2d0;font-size:13px;">Controle de ataques, quem atacou e quem faltou.</div>
+        </div>
+        <div class="chip">em breve</div>
       </div>
 
-      <h1>Painel do Clã Aimmers</h1>
-      <p class="subtitle">
-        Versão inicial do painel. Em breve vamos conectar guerras, ataques e membros em tempo real.
-      </p>
-
-      <div class="grid">
-        <div class="tile">
-          <div class="tile-label">Guerras</div>
-          <div class="tile-value">0 em andamento</div>
-          <div class="tile-hint">Esta informação será automática depois.</div>
+      <div class="shortcut">
+        <div>
+          <div class="title">Membros & Funções</div>
+          <div style="color:#9fb2d0;font-size:13px;">Organizar líderes, co-leaders, anciões e recrutas.</div>
         </div>
-        <div class="tile">
-          <div class="tile-label">Membros</div>
-          <div class="tile-value">—</div>
-          <div class="tile-hint">Lista virá da API do Clash of Clans.</div>
-        </div>
+        <div class="chip">planejando</div>
       </div>
 
-      <p class="section-title">atalhos rápidos</p>
-      <div class="list">
-        <div class="list-item">
-          <div>
-            <div class="list-title">Sala de Guerra</div>
-            <div class="list-desc">Controle de ataques, quem atacou e quem faltou.</div>
-          </div>
-          <span class="pill">em breve</span>
+      <div class="shortcut">
+        <div>
+          <div class="title">Regras & Recrutamento</div>
+          <div style="color:#9fb2d0;font-size:13px;">Página pública para regras, requisitos e contato.</div>
         </div>
-
-        <div class="list-item">
-          <div>
-            <div class="list-title">Membros & Funções</div>
-            <div class="list-desc">Organizar líderes, coleaders, anciões e recrutas.</div>
-          </div>
-          <span class="pill">planejando</span>
-        </div>
-
-        <div class="list-item">
-          <div>
-            <div class="list-title">Regras & Recrutamento</div>
-            <div class="list-desc">Página pública para regras, requisitos e contato.</div>
-          </div>
-          <span class="pill">rascunho</span>
-        </div>
+        <div class="chip">rascunho</div>
       </div>
+    </section>
 
-      <div class="button-row">
-        <a href="#" class="btn-primary btn">Entrar no painel</a>
-        <a href="#" class="btn">Ver versão pública</a>
-      </div>
-
-      <div class="footer">
-        <span>Protótipo · v0.1</span>
-        <span class="footer-strong">Clã Aimmers</span>
-      </div>
+    <!-- AÇÕES -->
+    <div class="actions">
+      <button class="btn primary" onclick="location.href='#'">Entrar no painel</button>
+      <button class="btn ghost" onclick="window.open(window.location.href, '_blank')">Ver versão pública</button>
     </div>
-  </div>
+
+    <footer>
+      Protótipo · v0.1 — Clã Aimmers
+    </footer>
+  </main>
 </body>
 </html>
