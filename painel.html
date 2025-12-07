@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Painel do Clã Aimmers</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: radial-gradient(circle at 20% 10%, rgba(10,14,23,0.6), rgba(2,6,12,1));
+      color: #e6eef8;
+      min-height: 100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:36px 18px;
+    }
+    .wrap {
+      width:100%;
+      max-width:920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:28px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 8px 30px rgba(2,6,12,0.6);
+    }
+    .banner { width:100%; border-radius:10px; overflow:hidden; margin-bottom:18px; background:#0b1116; }
+    .banner img { display:block; width:100%; height:auto; object-fit:cover; user-select:none; }
+    header h1 { font-size:28px; margin-bottom:6px; color:#fff; }
+    header p.lead { color:#b7c4d9; margin-bottom:16px; }
+    .cards { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:8px; }
+    .card {
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.03);
+    }
+    .card h3 { font-size:14px; color:#a9bfd8; margin-bottom:8px; }
+    .card .big { font-weight:700; font-size:20px; color:#fff; }
+    .shortcuts { margin-top:18px; display:grid; gap:10px; }
+    .shortcut {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.01);
+    }
+    .shortcut .title { color:#d7e6ff; font-weight:600; }
+    .chip { background: rgba(255,255,255,0.03); color:#b7c4d9; padding:6px 8px; border-radius:999px; font-size:12px; }
+    .actions { margin-top:20px; display:flex; gap:12px; }
+    .btn { padding:10px 16px; border-radius:999px; border:none; cursor:pointer; font-weight:700; }
+    .btn.primary { background: linear-gradient(90deg,#ff8a00,#ffc84d); color:#08121a; box-shadow:0 6px 18px rgba(255,138,0,0.14); }
+    .btn.ghost { background:transparent; color:#cfe4ff; border:1px solid rgba(255,255,255,0.04); }
+    footer { margin-top:18px; color:#9fb2d0; font-size:13px; opacity:0.9; }
+    @media (max-width:720px){
+      .cards{ grid-template-columns:1fr; }
+      header h1 { font-size:22px; }
+      .wrap { padding:18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main" aria-labelledby="title">
+    <!-- Banner: arquivo em /imagens/banner-clan.png -->
+    <a class="banner" href="/" aria-label="Banner do Clã Aimmers">
+      <img src="./imagens/banner-clan.png" alt="Banner Clã Aimmers - Painel Oficial">
+    </a>
+
+    <header>
+      <h1 id="title">Painel do Clã Aimmers</h1>
+      <p class="lead">Versão inicial do painel. Em breve vamos conectar guerras, ataques e membros em tempo real.</p>
+    </header>
+
+    <section class="cards" aria-label="Resumo">
+      <div class="card">
+        <h3>GUERRAS</h3>
+        <div class="big">0 em andamento</div>
+        <div style="margin-top:8px;color:#9fb2d0;font-size:13px;">Esta informação será automática depois.</div>
+      </div>
+      <div class="card">
+        <h3>MEMBROS</h3>
+        <div class="big">—</div>
+        <div style="margin-top:8px;color:#9fb2d0;font-size:13px;">Lista virá da API do Clash of Clans.</div>
+      </div>
+    </section>
+
+    <section class="shortcuts" aria-label="Atalhos rápidos">
+      <div class="shortcut">
+        <div>
+          <div class="title">Sala de Guerra</div>
+          <div style="color:#9fb2d0;font-size:13px;">Controle de ataques, quem atacou e quem faltou.</div>
+        </div>
+        <div class="chip">em breve</div>
+      </div>
+      <div class="shortcut">
+        <div>
+          <div class="title">Membros & Funções</div>
+          <div style="color:#9fb2d0;font-size:13px;">Organizar líderes, co-leaders, anciões e recrutas.</div>
+        </div>
+        <div class="chip">planejando</div>
+      </div>
+      <div class="shortcut">
+        <div>
+          <div class="title">Regras & Recrutamento</div>
+          <div style="color:#9fb2d0;font-size:13px;">Página pública para regras, requisitos e contato.</div>
+        </div>
+        <div class="chip">rascunho</div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <!-- O botão agora abre a página painel.html -->
+      <button class="btn primary" onclick="location.href='./painel.html'">Entrar no painel</button>
+      <button class="btn ghost" onclick="window.open(window.location.href, '_blank')">Ver versão pública</button>
+    </div>
+
+    <footer>Protótipo · v0.1 — Clã Aimmers</footer>
+  </main>
+</body>
+</html>
