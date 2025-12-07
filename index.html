@@ -5,237 +5,132 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Painel do Clã Aimmers</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, #0f1723 0%, #061018 30%, #020305 100%);
-      color:#dfe7ee;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:24px;
-      display:flex;
-      justify-content:center;
+    :root{
+      --bg:#081019;
+      --card:#0f1720;
+      --muted:#9aa3ad;
+      --accent:#f6a21a;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      color-scheme: dark;
     }
-
-    .card{
-      width:100%;
-      max-width:420px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px;
-      padding:20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-      border:1px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(8px);
-    }
-
-    .banner{
-      width:100%;
-      border-radius:12px;
-      overflow:hidden;
-      background: linear-gradient(180deg,#0b0f13,#0a0c0e);
-      margin-bottom:18px;
-      min-height:160px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .banner img{width:100%;height:auto;display:block;object-fit:cover;object-position:center}
-
-    h1{font-size:22px;margin-bottom:8px;color:#fff}
-    p.lead{color:rgba(230,236,242,0.72);margin-bottom:16px;line-height:1.45;font-size:14px}
-
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-    .info{
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.02);min-height:72px;
-    }
-    .info h3{font-size:12px;color:rgba(200,213,227,0.7);margin-bottom:8px}
-    .info p{font-weight:700;font-size:18px;color:#fff}
-
-    .shortcuts{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-    .shortcut{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      color:rgba(220,230,240,0.9);
-    }
-    .shortcut .label{font-weight:600}
-    .badge{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:20px;font-size:12px;color:#d0e1f7}
-
-    /* CONTROLES FORA DO ACORDION */
-    .controls-row{display:flex;gap:10px;align-items:center;margin:12px 0 6px 0;flex-wrap:wrap}
-    .select, .th-list{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:10px}
-    .select select{background:transparent;border:none;color:#dfe7ee;font-weight:600}
-    .th-list{display:flex;gap:8px;align-items:center}
-    .th-list button{background:#0b1220;color:#fff;border-radius:8px;padding:6px 10px;border:none;cursor:pointer}
-    .th-list button.active{background:#ff8a00;color:#111;font-weight:700}
-
-    /* ACORDION: apenas texto de regras */
-    .accordion{margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
-    .accordion-header{display:flex;justify-content:space-between;align-items:center;padding:12px;cursor:pointer;user-select:none}
-    .accordion-header h4{font-size:16px;color:#fff}
-    .chev{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);transition:transform .28s ease}
-    .accordion-content{padding:0 12px 12px 12px;max-height:0;overflow:hidden;transition:max-height .36s ease, opacity .28s ease;opacity:0}
-    .accordion-content.open{opacity:1}
-
-    .rules-text{margin-top:10px;font-size:13px;color:rgba(220,230,240,0.95);line-height:1.45;background:rgba(255,255,255,0.01);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
-
-    .actions{display:flex;gap:10px;margin-top:14px}
-    .btn{padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow: 0 6px 16px rgba(0,0,0,0.45)}
-    .btn.primary{background:linear-gradient(90deg,#ff9b2b,#ff6a2b);color:#111}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dfe7ee}
-
-    @media (max-width:420px){.grid{grid-template-columns:1fr}}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background: radial-gradient(circle at 50% 10%, #0b1220 0%, #061017 45%, #020305 100%); color:#e6eef7}
+    .wrap{max-width:460px;margin:28px auto;padding:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); border-radius:20px; padding:18px; box-shadow: 0 8px 30px rgba(2,8,14,0.7); border:1px solid rgba(255,255,255,0.03)}
+    .banner{width:100%;height:180px;border-radius:12px;overflow:hidden;background:#071018;display:flex;align-items:center;justify-content:center}
+    .banner img{width:100%;height:100%;object-fit:cover;display:block}
+    h1{font-size:24px;margin:18px 0 6px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+    .box{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .box h3{margin:0;color:#d6e3f0;font-size:16px}
+    .box p{margin:8px 0 0;color:var(--muted);font-size:13px}
+    .full{grid-column:1/-1}
+    .cta-row{display:flex;gap:12px;margin-top:10px}
+    .btn{flex:1;padding:12px;border-radius:12px;border:0;font-weight:600;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,#ffb24e,#ff8b2b);color:#100a02;box-shadow:0 6px 18px rgba(255,140,40,0.18)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e8f0f8}
+    .meta{font-size:13px;color:var(--muted);margin-top:12px}
+    /* filtros */
+    .controls{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .select{background:var(--card);padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);color:#e9f2fb}
+    .th-list{display:flex;gap:8px;flex-wrap:wrap}
+    .th-btn{background:#0b1720;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);font-weight:600;color:#cfe0f0}
+    .th-btn.active{background:var(--accent);color:#100b06}
+    /* regras quick link */
+    .rule-link{margin-top:16px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    .rule-link .title{font-weight:600}
+    .icon-down{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+    @media (max-width:420px){.wrap{padding:14px}.banner{height:160px}}
   </style>
 </head>
 <body>
-  <main class="card" role="main" aria-labelledby="title">
-    <div class="banner" aria-hidden="false">
-      <img src="imagens/banner-clan.png" alt="Banner do Clã Aimmers — Painel" onerror="this.style.display='none'">
-    </div>
-
-    <h1 id="title">Painel do Clã Aimmers</h1>
-    <p class="lead">Versão inicial do painel. Conecta guerras, ligas e membros por nível de Centro de Vila (TH).</p>
-
-    <div class="grid">
-      <div class="info">
-        <h3>GUERRAS</h3>
-        <p>0 em andamento</p>
-        <small style="color:rgba(220,230,240,0.6)">Esta informação será automática depois (API)</small>
+  <div class="wrap">
+    <div class="card">
+      <div class="banner" aria-hidden="true">
+        <!-- deixe esse src apontando para imagens/banner-clan.png -->
+        <img src="imagens/banner-clan.png" alt="Banner Clã Aimmers - Painel" onerror="this.style.filter='brightness(0.05)';this.alt='Banner indisponível'">
       </div>
 
-      <div class="info">
-        <h3>MEMBROS</h3>
-        <p>—</p>
-        <small style="color:rgba(220,230,240,0.6)">Lista virá da API do Clash of Clans</small>
-      </div>
-    </div>
+      <h1>Painel do Clã Aimmers</h1>
+      <p class="lead">Versão inicial do painel. Conecta guerras, ligas e membros por nível de Centro de Vila (TH).</p>
 
-    <div class="shortcuts">
-      <div class="shortcut">
+      <div class="grid">
+        <div class="box">
+          <h3>Guerras</h3>
+          <p class="small"><strong>0 em andamento</strong><br>Esta informação será automática depois (API).</p>
+        </div>
+
+        <div class="box">
+          <h3>Membros</h3>
+          <p class="small">—<br>Lista virá da API do Clash of Clans</p>
+        </div>
+
+        <div class="box full">
+          <h3>Sala de Guerra</h3>
+          <p class="small">Controle de ataques, quem atacou e quem faltou.</p>
+        </div>
+
+        <div class="box full">
+          <h3>Membros & Funções</h3>
+          <p class="small">Organizar líderes, co-leaders e recrutamento interno.</p>
+        </div>
+      </div>
+
+      <!-- Controls (fora da caixinha de regras) -->
+      <div class="controls">
+        <div class="select" id="modeSelect">
+          Modo:
+          <select id="mode" style="background:transparent;border:0;color:inherit;font-weight:600;margin-left:8px">
+            <option>Guerra + Liga</option>
+            <option>Guerra</option>
+            <option>Liga</option>
+          </select>
+        </div>
+
+        <div style="flex:1">
+          <div class="small" style="margin-bottom:8px">Filtrar por Centro de Vila (TH):</div>
+          <div class="th-list" id="thList">
+            <button class="th-btn">TH15</button>
+            <button class="th-btn">TH16</button>
+            <button class="th-btn active">TH17</button>
+            <button class="th-btn">TH18</button>
+            <button class="th-btn">TODOS</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Link para página de regras (nova página separada) -->
+      <div class="rule-link" style="margin-top:18px;">
         <div>
-          <div class="label">Sala de Guerra</div>
-          <small style="color:rgba(220,230,240,0.65)">Controle de ataques, quem atacou e quem faltou.</small>
+          <div class="title">Regras Internas (somente para o clã)</div>
+          <div class="small">Clique para abrir a página privada com as regras do clã e estratégias.</div>
         </div>
-        <div class="badge">em breve</div>
+        <a href="regras.html" style="text-decoration:none" aria-label="Abrir regras internas">
+          <div class="icon-down">▸</div>
+        </a>
       </div>
 
-      <div class="shortcut">
-        <div>
-          <div class="label">Membros & Funções</div>
-          <small style="color:rgba(220,230,240,0.65)">Organizar líderes, co-leaders e recrutamento interno.</small>
-        </div>
-        <div class="badge">planejando</div>
+      <div class="cta-row">
+        <button class="btn btn-primary">Entrar no painel</button>
+        <button class="btn btn-ghost">Ver versão pública</button>
       </div>
 
-      <div class="shortcut">
-        <div>
-          <div class="label">Regras Internas</div>
-          <small style="color:rgba(220,230,240,0.65)">Página privada para regras do clã e estratégias.</small>
-        </div>
-        <div class="badge">privado</div>
-      </div>
+      <div class="meta">Protótipo · v0.1 — Clã Aimmers</div>
     </div>
-
-    <!-- CONTROLES QUE FICAM FORA DA CAIXA DE REGRAS -->
-    <div class="controls-row" aria-label="Controles principais">
-      <div class="select" role="region" aria-label="Modo de operação">
-        <label style="font-size:13px;color:rgba(220,230,240,0.8);margin-right:8px">Modo:</label>
-        <select id="mode">
-          <option value="both">Guerra + Liga</option>
-          <option value="war">Somente Guerra</option>
-          <option value="league">Somente Liga</option>
-        </select>
-      </div>
-
-      <div class="th-list" role="region" aria-label="Filtrar por Centro de Vila">
-        <label style="font-size:13px;color:rgba(220,230,240,0.8);margin-right:8px">Filtrar por TH:</label>
-        <button class="th-btn" data-th="15">TH15</button>
-        <button class="th-btn" data-th="16">TH16</button>
-        <button class="th-btn active" data-th="17">TH17</button>
-        <button class="th-btn" data-th="18">TH18</button>
-        <button class="th-btn" data-th="all">TODOS</button>
-      </div>
-    </div>
-
-    <!-- ACORDION: APENAS O TEXTO DAS REGRAS (FECHADO POR PADRÃO) -->
-    <div class="accordion" id="rulesAccordion">
-      <div class="accordion-header" id="rulesHeader" tabindex="0" role="button" aria-expanded="false" aria-controls="rulesContent">
-        <div>
-          <h4>Regras Internas (somente para o clã)</h4>
-          <p style="margin-top:6px;color:rgba(220,230,240,0.72)">Clique para abrir/fechar as regras internas do clã (visão privada).</p>
-        </div>
-        <div class="chev" aria-hidden="true">▾</div>
-      </div>
-
-      <div class="accordion-content" id="rulesContent" role="region" aria-labelledby="rulesHeader">
-        <div class="rules-text">
-          <!-- Texto único e enxuto com as regras principais -->
-          <strong>Objetivo:</strong> Organização interna — definição de ordem de alocação, backups e responsabilidades.<br><br>
-
-          <strong>TH variável:</strong> aceitamos TH15 até TH18+; cada guerra/ligação terá filtro por TH e as regras serão aplicadas por nível (ex.: prioridades diferentes para TH17).<br><br>
-
-          <strong>Regras de ataque:</strong> definir critério de alvo (percentual, defensores, anéis) e registrar resultados na Sala de Guerra interna.<br><br>
-
-          <strong>Ligas & Guerras:</strong> o painel suporta modos Guerra, Liga e Guerra + Liga; as estratégias devem seguir o modo ativo.<br><br>
-
-          <strong>Penalidades internas:</strong> atrasos/ausências na escala devem ser comunicados no chat do clã; faltas repetidas podem gerar advertência interna.
-        </div>
-      </div>
-    </div>
-
-    <div class="actions">
-      <button class="btn primary" onclick="enterPanel()">Entrar no painel</button>
-      <button class="btn ghost" onclick="viewPublic()">Ver versão pública</button>
-    </div>
-  </main>
+  </div>
 
   <script>
-    function enterPanel(){ alert('Entrando no painel interno (demo)'); }
-    function viewPublic(){ alert('Abrir versão pública (demo)'); }
-
-    (function(){
-      const header = document.getElementById('rulesHeader');
-      const content = document.getElementById('rulesContent');
-      const chev = header.querySelector('.chev');
-
-      function openAccordion(){
-        content.classList.add('open');
-        content.style.maxHeight = content.scrollHeight + 'px';
-        header.setAttribute('aria-expanded','true');
-        chev.style.transform = 'rotate(180deg)';
-      }
-      function closeAccordion(){
-        content.style.maxHeight = content.scrollHeight + 'px';
-        window.getComputedStyle(content).maxHeight;
-        content.style.maxHeight = '0px';
-        content.classList.remove('open');
-        header.setAttribute('aria-expanded','false');
-        chev.style.transform = 'rotate(0deg)';
-      }
-      content.style.maxHeight = '0px';
-      chev.style.transform = 'rotate(0deg)';
-
-      function toggleAccordion(){ const isOpen = header.getAttribute('aria-expanded') === 'true'; if(isOpen) closeAccordion(); else openAccordion(); }
-
-      header.addEventListener('click', toggleAccordion);
-      header.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleAccordion(); } });
-
-      document.querySelectorAll('.th-btn').forEach(btn=>{
-        btn.addEventListener('click', ()=> {
-          document.querySelectorAll('.th-btn').forEach(b=>b.classList.remove('active'));
-          btn.classList.add('active');
-          console.log('Filtrar por TH', btn.dataset.th);
-        })
+    // interatividade simples dos botões TH (apenas visual)
+    document.querySelectorAll('.th-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=> {
+        document.querySelectorAll('.th-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
       });
-
-      window.addEventListener('load', ()=>{
-        const img = document.querySelector('.banner img');
-        if(img && img.complete && img.naturalWidth === 0) img.style.display = 'none';
-      });
-
-    })();
+    });
   </script>
 </body>
 </html>
