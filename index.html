@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Painel do Clã Aimmers</title>
   <style>
-    /* RESET BÁSICO */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
@@ -19,7 +18,6 @@
       justify-content:center;
     }
 
-    /* CONTAINER DO CARD */
     .card{
       width:100%;
       max-width:420px;
@@ -31,7 +29,6 @@
       backdrop-filter: blur(8px);
     }
 
-    /* BANNER */
     .banner{
       width:100%;
       border-radius:12px;
@@ -43,45 +40,20 @@
       align-items:center;
       justify-content:center;
     }
-    .banner img{
-      width:100%;
-      height:auto;
-      display:block;
-      object-fit:cover;
-      object-position:center;
-    }
+    .banner img{width:100%;height:auto;display:block;object-fit:cover;object-position:center}
 
-    h1{
-      font-size:22px;
-      margin-bottom:8px;
-      color:#ffffff;
-    }
-    p.lead{
-      color:rgba(230,236,242,0.72);
-      margin-bottom:16px;
-      line-height:1.45;
-      font-size:14px;
-    }
+    h1{font-size:22px;margin-bottom:8px;color:#fff}
+    p.lead{color:rgba(230,236,242,0.72);margin-bottom:16px;line-height:1.45;font-size:14px}
 
-    /* BOXES DE INFO */
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-bottom:16px;
-    }
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
     .info{
       background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border-radius:10px;
-      padding:12px;
-      border:1px solid rgba(255,255,255,0.02);
-      min-height:72px;
+      border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.02);min-height:72px;
     }
     .info h3{font-size:12px;color:rgba(200,213,227,0.7);margin-bottom:8px}
     .info p{font-weight:700;font-size:18px;color:#fff}
 
-    /* atalhos */
-    .shortcuts{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+    .shortcuts{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
     .shortcut{
       display:flex;justify-content:space-between;align-items:center;
       padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);
@@ -91,73 +63,34 @@
     .shortcut .label{font-weight:600}
     .badge{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:20px;font-size:12px;color:#d0e1f7}
 
-    /* regras: estilo do accordion */
-    .accordion{
-      margin-top:8px;
-      border-radius:10px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.02);
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-    }
-    .accordion-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px;
-      cursor:pointer;
-      user-select:none;
-    }
-    .accordion-header h4{font-size:16px;color:#fff}
-    .accordion-header p{font-size:13px;color:rgba(220,230,240,0.7)}
-    .chev{
-      width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-      background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);
-      transition:transform .28s ease;
-    }
-
-    .accordion-content{
-      padding:0 12px 12px 12px;
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .36s ease, opacity .28s ease;
-      opacity:0;
-    }
-
-    .accordion-content.open{
-      opacity:1;
-    }
-
-    .rules-list{display:grid;gap:8px;margin-top:8px}
-    .rules-item{
-      background:rgba(255,255,255,0.01);
-      padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);
-      font-size:13px;color:rgba(220,230,240,0.95)
-    }
-
-    /* controles: modo e th */
-    .controls{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
-    .select, .th-list{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px}
-    .th-list button{background:#0b1220;color:#fff;border-radius:8px;padding:6px 8px;border:none;margin-right:6px;cursor:pointer}
+    /* CONTROLES FORA DO ACORDION */
+    .controls-row{display:flex;gap:10px;align-items:center;margin:12px 0 6px 0;flex-wrap:wrap}
+    .select, .th-list{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:10px}
+    .select select{background:transparent;border:none;color:#dfe7ee;font-weight:600}
+    .th-list{display:flex;gap:8px;align-items:center}
+    .th-list button{background:#0b1220;color:#fff;border-radius:8px;padding:6px 10px;border:none;cursor:pointer}
     .th-list button.active{background:#ff8a00;color:#111;font-weight:700}
 
-    /* botoes */
+    /* ACORDION: apenas texto de regras */
+    .accordion{margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
+    .accordion-header{display:flex;justify-content:space-between;align-items:center;padding:12px;cursor:pointer;user-select:none}
+    .accordion-header h4{font-size:16px;color:#fff}
+    .chev{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);transition:transform .28s ease}
+    .accordion-content{padding:0 12px 12px 12px;max-height:0;overflow:hidden;transition:max-height .36s ease, opacity .28s ease;opacity:0}
+    .accordion-content.open{opacity:1}
+
+    .rules-text{margin-top:10px;font-size:13px;color:rgba(220,230,240,0.95);line-height:1.45;background:rgba(255,255,255,0.01);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+
     .actions{display:flex;gap:10px;margin-top:14px}
-    .btn{
-      padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.45);
-    }
+    .btn{padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow: 0 6px 16px rgba(0,0,0,0.45)}
     .btn.primary{background:linear-gradient(90deg,#ff9b2b,#ff6a2b);color:#111}
     .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dfe7ee}
 
-    /* responsivo */
-    @media (max-width:420px){
-      .grid{grid-template-columns:1fr}
-    }
+    @media (max-width:420px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <main class="card" role="main" aria-labelledby="title">
-    <!-- BANNER: ajuste o caminho caso precise (ex: imagens/banner-clan.png) -->
     <div class="banner" aria-hidden="false">
       <img src="imagens/banner-clan.png" alt="Banner do Clã Aimmers — Painel" onerror="this.style.display='none'">
     </div>
@@ -205,55 +138,53 @@
       </div>
     </div>
 
-    <!-- Accordion de Regras -->
+    <!-- CONTROLES QUE FICAM FORA DA CAIXA DE REGRAS -->
+    <div class="controls-row" aria-label="Controles principais">
+      <div class="select" role="region" aria-label="Modo de operação">
+        <label style="font-size:13px;color:rgba(220,230,240,0.8);margin-right:8px">Modo:</label>
+        <select id="mode">
+          <option value="both">Guerra + Liga</option>
+          <option value="war">Somente Guerra</option>
+          <option value="league">Somente Liga</option>
+        </select>
+      </div>
+
+      <div class="th-list" role="region" aria-label="Filtrar por Centro de Vila">
+        <label style="font-size:13px;color:rgba(220,230,240,0.8);margin-right:8px">Filtrar por TH:</label>
+        <button class="th-btn" data-th="15">TH15</button>
+        <button class="th-btn" data-th="16">TH16</button>
+        <button class="th-btn active" data-th="17">TH17</button>
+        <button class="th-btn" data-th="18">TH18</button>
+        <button class="th-btn" data-th="all">TODOS</button>
+      </div>
+    </div>
+
+    <!-- ACORDION: APENAS O TEXTO DAS REGRAS (FECHADO POR PADRÃO) -->
     <div class="accordion" id="rulesAccordion">
       <div class="accordion-header" id="rulesHeader" tabindex="0" role="button" aria-expanded="false" aria-controls="rulesContent">
         <div>
-          <h4>Regras Internas — (Somente para o clã)</h4>
-          <p style="margin-top:6px;color:rgba(220,230,240,0.72)">Clique para abrir/fechar as regras internas do clã.</p>
+          <h4>Regras Internas (somente para o clã)</h4>
+          <p style="margin-top:6px;color:rgba(220,230,240,0.72)">Clique para abrir/fechar as regras internas do clã (visão privada).</p>
         </div>
         <div class="chev" aria-hidden="true">▾</div>
       </div>
 
       <div class="accordion-content" id="rulesContent" role="region" aria-labelledby="rulesHeader">
-        <div class="rules-list" style="margin-top:10px">
-          <div class="rules-item"><strong>Objetivo:</strong> Organização interna — quem ataca, ordem de alocação e backups.</div>
-          <div class="rules-item"><strong>TH variável:</strong> aceitamos TH15 até TH18+ — cada guerra/ligação terá filtro por TH; as regras são aplicadas por TH (ex: TH17 terá prioridade X).</div>
-          <div class="rules-item"><strong>Regras de ataque:</strong> definir critério por alvo (percentual, defensores, anéis) — registrar resultado no "Sala de Guerra".</div>
-          <div class="rules-item"><strong>Ligas:</strong> o painel suporta modo <em>Guerra</em>, <em>Liga</em> ou <em>Guerra + Liga</em>. Estratégias e escalações separadas por modo.</div>
-          <div class="rules-item"><strong>Penalidades internas:</strong> atrasos/ausências na escala devem ser comunicados no chat do clã; repetidas faltas geram advertência interna.</div>
-        </div>
+        <div class="rules-text">
+          <!-- Texto único e enxuto com as regras principais -->
+          <strong>Objetivo:</strong> Organização interna — definição de ordem de alocação, backups e responsabilidades.<br><br>
 
-        <!-- controles: modo e TH -->
-        <div class="controls" style="margin-top:12px">
-          <div class="select" role="region" aria-label="Modo">
-            Modo:
-            <select id="mode" style="background:transparent;border:none;color:#dfe7ee">
-              <option value="both">Guerra + Liga</option>
-              <option value="war">Somente Guerra</option>
-              <option value="league">Somente Liga</option>
-            </select>
-          </div>
+          <strong>TH variável:</strong> aceitamos TH15 até TH18+; cada guerra/ligação terá filtro por TH e as regras serão aplicadas por nível (ex.: prioridades diferentes para TH17).<br><br>
 
-          <div class="th-list" role="region" aria-label="Filtrar por Centro de Vila (TH)">
-            Filtrar por Centro de Vila (TH):
-            <div style="margin-top:8px">
-              <button class="th-btn" data-th="15">TH15</button>
-              <button class="th-btn" data-th="16">TH16</button>
-              <button class="th-btn active" data-th="17">TH17</button>
-              <button class="th-btn" data-th="18">TH18</button>
-              <button class="th-btn" data-th="all">TODOS</button>
-            </div>
-          </div>
-        </div>
+          <strong>Regras de ataque:</strong> definir critério de alvo (percentual, defensores, anéis) e registrar resultados na Sala de Guerra interna.<br><br>
 
-        <div style="margin-top:12px;font-size:13px;color:rgba(220,230,240,0.8)">
-          Observação: as regras acima são um modelo. Quando integrar a API do Clash of Clans, as listas por TH e os estados de guerra/ligas serão sincronizados automaticamente.
+          <strong>Ligas & Guerras:</strong> o painel suporta modos Guerra, Liga e Guerra + Liga; as estratégias devem seguir o modo ativo.<br><br>
+
+          <strong>Penalidades internas:</strong> atrasos/ausências na escala devem ser comunicados no chat do clã; faltas repetidas podem gerar advertência interna.
         </div>
       </div>
     </div>
 
-    <!-- Ações -->
     <div class="actions">
       <button class="btn primary" onclick="enterPanel()">Entrar no painel</button>
       <button class="btn ghost" onclick="viewPublic()">Ver versão pública</button>
@@ -261,15 +192,9 @@
   </main>
 
   <script>
-    // Funções de exemplo
-    function enterPanel(){
-      alert('Entrando no painel interno (função de demonstração).');
-    }
-    function viewPublic(){
-      alert('Abrir versão pública (se houver).');
-    }
+    function enterPanel(){ alert('Entrando no painel interno (demo)'); }
+    function viewPublic(){ alert('Abrir versão pública (demo)'); }
 
-    // Accordion behavior (abrir/fechar com animação ajustando max-height)
     (function(){
       const header = document.getElementById('rulesHeader');
       const content = document.getElementById('rulesContent');
@@ -277,56 +202,37 @@
 
       function openAccordion(){
         content.classList.add('open');
-        // set max-height to scrollHeight para animar
         content.style.maxHeight = content.scrollHeight + 'px';
         header.setAttribute('aria-expanded','true');
         chev.style.transform = 'rotate(180deg)';
       }
       function closeAccordion(){
-        // para animar fechar, primeiro set max-height para o valor atual
         content.style.maxHeight = content.scrollHeight + 'px';
-        // força repaint
         window.getComputedStyle(content).maxHeight;
         content.style.maxHeight = '0px';
         content.classList.remove('open');
         header.setAttribute('aria-expanded','false');
         chev.style.transform = 'rotate(0deg)';
       }
-      // estado inicial: fechado
       content.style.maxHeight = '0px';
       chev.style.transform = 'rotate(0deg)';
 
-      function toggleAccordion(){
-        const isOpen = header.getAttribute('aria-expanded') === 'true';
-        if(isOpen) closeAccordion(); else openAccordion();
-      }
+      function toggleAccordion(){ const isOpen = header.getAttribute('aria-expanded') === 'true'; if(isOpen) closeAccordion(); else openAccordion(); }
 
       header.addEventListener('click', toggleAccordion);
-      header.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          toggleAccordion();
-        }
-      });
+      header.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleAccordion(); } });
 
-      // TH buttons toggles (apenas visual)
       document.querySelectorAll('.th-btn').forEach(btn=>{
         btn.addEventListener('click', ()=> {
           document.querySelectorAll('.th-btn').forEach(b=>b.classList.remove('active'));
           btn.classList.add('active');
-          // Aqui poderia disparar filtragem real: ex: filterByTH(btn.dataset.th)
           console.log('Filtrar por TH', btn.dataset.th);
         })
       });
 
-      // Fallback: se banner não carregou, esconde a tag img
       window.addEventListener('load', ()=>{
         const img = document.querySelector('.banner img');
-        if(img && img.complete){
-          if(img.naturalWidth === 0){
-            img.style.display = 'none';
-          }
-        }
+        if(img && img.complete && img.naturalWidth === 0) img.style.display = 'none';
       });
 
     })();
