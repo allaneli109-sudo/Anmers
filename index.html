@@ -3,11 +3,262 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aimmers Clan</title>
+  <title>Painel do Clã Aimmers</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2933 0, #020617 55%, #000 100%);
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 16px;
+      padding: 20px 18px 22px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      margin-bottom: 10px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .tile {
+      background: linear-gradient(135deg, #111827, #020617);
+      border-radius: 12px;
+      padding: 10px 10px 11px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .tile-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .tile-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .tile-hint {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 3px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .list-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .list-desc {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+    }
+
+    .footer {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 13px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: transparent;
+      color: #e5e7eb;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #facc15);
+      border-color: transparent;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 26px;
+      }
+      .card {
+        padding: 24px 22px 24px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family:Arial, Helvetica, sans-serif; padding:24px;">
-  <h1>Painel do Clã Aimmers</h1>
-  <p>Site inicial criado com GitHub + Vercel.</p>
-  <p>Em breve vamos automatizar guerras e membros.</p>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Clã conectado (protótipo)
+      </div>
+
+      <h1>Painel do Clã Aimmers</h1>
+      <p class="subtitle">
+        Versão inicial do painel. Em breve vamos conectar guerras, ataques e membros em tempo real.
+      </p>
+
+      <div class="grid">
+        <div class="tile">
+          <div class="tile-label">Guerras</div>
+          <div class="tile-value">0 em andamento</div>
+          <div class="tile-hint">Esta informação será automática depois.</div>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Membros</div>
+          <div class="tile-value">—</div>
+          <div class="tile-hint">Lista virá da API do Clash of Clans.</div>
+        </div>
+      </div>
+
+      <p class="section-title">atalhos rápidos</p>
+      <div class="list">
+        <div class="list-item">
+          <div>
+            <div class="list-title">Sala de Guerra</div>
+            <div class="list-desc">Controle de ataques, quem atacou e quem faltou.</div>
+          </div>
+          <span class="pill">em breve</span>
+        </div>
+
+        <div class="list-item">
+          <div>
+            <div class="list-title">Membros & Funções</div>
+            <div class="list-desc">Organizar líderes, coleaders, anciões e recrutas.</div>
+          </div>
+          <span class="pill">planejando</span>
+        </div>
+
+        <div class="list-item">
+          <div>
+            <div class="list-title">Regras & Recrutamento</div>
+            <div class="list-desc">Página pública para regras, requisitos e contato.</div>
+          </div>
+          <span class="pill">rascunho</span>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <a href="#" class="btn-primary btn">Entrar no painel</a>
+        <a href="#" class="btn">Ver versão pública</a>
+      </div>
+
+      <div class="footer">
+        <span>Protótipo · v0.1</span>
+        <span class="footer-strong">Clã Aimmers</span>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
