@@ -3,215 +3,113 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Regras — Clã Aimmers (Caixinha)</title>
+<title>Regras & Premiações — Clã Aimmers</title>
 <style>
   :root{
-    --bg:#0f1113;
-    --card:#0f1720;
-    --muted:#9aa4ad;
-    --accent:#ff9a2b;
-    --glass: rgba(255,255,255,0.03);
-    --radius:14px;
-    --card-radius:16px;
+    --bg:#05070a; --panel:#0d1417; --card:#0f171a; --muted:rgba(255,255,255,0.65); --accent:#ff9b1a;
   }
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,#071016 0%, #0c0f12 100%);font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-  .container{max-width:760px;margin:28px auto;padding:20px;}
-  .panel{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
-    border-radius: calc(var(--card-radius)+6px);
-    padding:18px;
-    box-shadow: 0 6px 30px rgba(2,6,10,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
-    color:#e6eef5;
-  }
-
-  .banner{
-    width:100%;
-    height:160px;
-    border-radius:12px;
-    overflow:hidden;
-    background-color:#071018;
-    display:block;
-    margin-bottom:16px;
-  }
-  .banner img{width:100%;height:100%;object-fit:cover;display:block}
-
-  h1{font-size:26px;margin:6px 0 8px}
-  p.lead{color:var(--muted);margin:0 0 18px;font-size:14px}
-
-  /* small info cards row */
-  .cards{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-  .card{flex:1 1 140px;background:var(--glass);padding:14px;border-radius:12px;color:#cfe3f0;box-shadow:inset 0 -1px 0 rgba(255,255,255,0.02)}
-  .card h3{margin:0;font-size:15px}
-  .card p{margin:8px 0 0;color:var(--muted);font-size:13px}
-
-  /* mode + th filters (kept outside accordion) */
-  .controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:6px 0 18px}
-  .select{
-    background:#0b1317;border-radius:12px;padding:10px 14px;color:#e6eef5;border:1px solid rgba(255,255,255,0.03);
-    min-width:160px;display:flex;align-items:center;justify-content:space-between;
-  }
-  .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .chip{background:#081219;padding:8px 12px;border-radius:10px;color:#cfe3f0;border:1px solid rgba(255,255,255,0.02);font-weight:600}
-  .chip.active{background:var(--accent);color:#0b0b0b}
-
-  /* accordion */
-  .accordion{margin-top:10px}
-  .accordion-item{background:rgba(255,255,255,0.02);border-radius:12px;padding:12px 14px;margin-bottom:12px;display:block;position:relative}
-  .acc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;outline:none;border:none;background:transparent;padding:6px 0;width:100%}
-  .acc-title{font-weight:700;font-size:16px;color:#fff}
-  .acc-sub{color:var(--muted);font-size:13px;margin-top:6px}
-  .acc-toggle{width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
-  .acc-content{max-height:0;overflow:hidden;transition:max-height 280ms ease, padding 200ms ease;padding:0 4px}
-  .acc-content.open{padding:12px 4px;max-height:400px}
-
-  .list{display:flex;flex-direction:column;gap:10px}
-  .list b{display:block;color:#fff;margin-bottom:6px}
-  .list p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
-  .small{font-size:13px;color:var(--muted)}
-
-  /* footer buttons */
-  .row{display:flex;gap:12px;margin-top:16px}
-  .btn{padding:12px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
-  .btn.primary{background:linear-gradient(90deg,var(--accent),#ff7f1f);color:#081017;box-shadow:0 6px 18px rgba(255,154,43,0.16)}
-  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dfeaf2}
-
-  /* responsive */
-  @media (max-width:560px){
-    .banner{height:140px}
-    .cards{gap:10px}
-  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#fff;background:radial-gradient(circle at 50% 10%, #071014 0%, #040607 60%),var(--bg);padding:18px}
+  .wrap{max-width:920px;margin:0 auto}
+  .banner{border-radius:12px;overflow:hidden;margin-bottom:12px}
+  .banner img{width:100%;display:block}
+  h1{margin:6px 0 6px 0;font-size:1.4rem}
+  .lead{color:var(--muted);margin-bottom:14px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:12px;margin-bottom:12px}
+  details{background:var(--panel);border-radius:12px;padding:8px;border:1px solid rgba(255,255,255,0.03)}
+  summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:10px 6px;font-weight:700}
+  summary::-webkit-details-marker{display:none}
+  .summary-left{display:flex;flex-direction:column}
+  .summary-left small{color:var(--muted);font-weight:600}
+  .content{padding:10px 6px;color:var(--muted);line-height:1.45}
+  .section-title{font-weight:800;color:#fff;margin-top:8px;margin-bottom:6px}
+  .rule{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;margin:8px 0;border:1px solid rgba(255,255,255,0.02)}
+  .btn-row{display:flex;gap:12px;margin-top:16px}
+  .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer}
+  .btn-enter{background:linear-gradient(180deg,#ffb35b,#ff9b1a);color:#111;font-weight:800}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+  @media(max-width:480px){body{padding:12px}}
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="panel" role="region" aria-label="Painel do Clã Aimmers — regras resumidas">
-      <!-- Banner: substitua o src se necessário -->
-      <div class="banner" aria-hidden="true">
-        <img src="imagens/banner-clan.png" alt="Banner Clã Aimmers" />
-      </div>
+  <div class="wrap">
+    <div class="banner">
+      <img src="imagens/banner-clan.png" alt="Banner Clã Aimmers" onerror="this.style.opacity=.06"/>
+    </div>
 
-      <h1>Painel do Clã Aimmers</h1>
-      <p class="lead">Conecta guerras, ligas e membros por nível de Centro de Vila (TH). Clique em "Regras" para abrir/fechar.</p>
+    <h1>Regras & Premiações</h1>
+    <p class="lead">Página privada com regras internas e explicação do sistema de prêmios. Clique em cada bloco para abrir/fechar.</p>
 
-      <div class="cards" aria-hidden="true">
-        <div class="card"><h3>Guerras</h3><p class="small">Status automático via API</p></div>
-        <div class="card"><h3>Membros</h3><p class="small">Lista por TH (API)</p></div>
-        <div class="card"><h3>Sala de Guerra</h3><p class="small">Controle de ataques</p></div>
-      </div>
-
-      <!-- controles (fora da caixinha de regras) -->
-      <div class="controls" aria-hidden="true">
-        <div class="select" title="Modo">
-          <span>Modo: <strong style="margin-left:8px">Guerra + Liga</strong></span>
-          <span style="opacity:.8">▼</span>
-        </div>
-
-        <div style="flex:1">
-          <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Filtrar por Centro de Vila (TH):</div>
-          <div class="filters" role="group" aria-label="Filtrar por TH">
-            <div class="chip">TH15</div>
-            <div class="chip">TH16</div>
-            <div class="chip active" aria-pressed="true">TH17</div>
-            <div class="chip">TH18</div>
-            <div class="chip">TODOS</div>
+    <!-- Regras -->
+    <div class="card">
+      <details id="regras" open>
+        <summary>
+          <div class="summary-left">
+            <span>REGRAS</span>
+            <small>Regras internas do clã (visão curta e direta)</small>
           </div>
+          <div aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+
+        <div class="content">
+          <div class="section-title">Regras principais</div>
+          <div class="rule"><strong>Meta:</strong> mínimo 2 estrelas; ideal 3 estrelas (PT). Ataque com 1 estrela → reserva.</div>
+
+          <div class="section-title">Participação</div>
+          <div class="rule">Só participa quem treina com co-líderes. Treinos: mínimo 1 por semana. Escala por CV (TH15+).</div>
+
+          <div class="section-title">Penalidades</div>
+          <div class="rule">1 falta grave → aviso. 2 faltas → reserva. 3 faltas → saída do clã.</div>
+
+          <div class="section-title">Hierarquia</div>
+          <div class="rule">Líder: estratégia. Co-líderes: treinos e escalas. Anciões: suporte. Membros: cumprir escalas e treinos.</div>
         </div>
-      </div>
+      </details>
+    </div>
 
-      <!-- Accordion: regras resumidas -->
-      <div class="accordion" id="rulesAccordion">
-        <div class="accordion-item" >
-          <button class="acc-head" aria-expanded="false" aria-controls="acc1" id="acc1btn">
-            <div>
-              <div class="acc-title">Regras Internas (somente para o clã)</div>
-              <div class="acc-sub">Clique para abrir/fechar as regras e benefícios do clã</div>
-            </div>
-            <div class="acc-toggle" aria-hidden="true">▸</div>
-          </button>
-
-          <div class="acc-content" id="acc1" role="region" aria-labelledby="acc1btn">
-            <div class="list">
-              <div>
-                <b>Regras principais</b>
-                <p>Meta mínima: <strong>2 estrelas</strong>. Meta ideal: <strong>3 estrelas (PT)</strong>. 1 estrela → reserva. Ataque sem aviso → advertência.</p>
-              </div>
-
-              <div>
-                <b>Participação</b>
-                <p>Só participa quem treina com co-líderes. Treinos semanais (mín.1). Escala por CV (TH15+). Consistência = prioridade.</p>
-              </div>
-
-              <div>
-                <b>Penalidades</b>
-                <p>1 falta grave → aviso. 2 faltas → reserva. 3 faltas → saída do clã.</p>
-              </div>
-
-              <div>
-                <b>Benefícios & Prêmios</b>
-                <p>Entre <strong>3 a 6 bilhetes dourados</strong> por mês distribuídos por PTs, melhores ataques e participação nos treinos.</p>
-              </div>
-
-              <div>
-                <b>Hierarquia</b>
-                <p>Líder → estratégia. Co-líderes → treinos/escala. Anciões → suporte. Membros → treinar e seguir regras.</p>
-              </div>
-
-              <div>
-                <b>Objetivo</b>
-                <p>Evolução constante, guerra limpa e alto desempenho nas ligas.</p>
-              </div>
-
-            </div>
+    <!-- Premiações -->
+    <div class="card">
+      <details id="premiacoes">
+        <summary>
+          <div class="summary-left">
+            <span>PREMIAÇÕES</span>
+            <small>Como são distribuídos prêmios e critérios</small>
           </div>
+          <div aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+
+        <div class="content">
+          <div class="section-title">Resumo</div>
+          <div class="rule">3–6 bilhetes dourados por mês distribuídos por desempenho: PTs, melhores ataques e participação.</div>
+
+          <div class="section-title">Critérios</div>
+          <div class="rule"><strong>Top prioridade:</strong> PTs (3 estrelas consistentes). <strong>Também:</strong> melhores ataques da liga/ guerra e presença em treinos.</div>
+
+          <div class="section-title">Entrega</div>
+          <div class="rule">Líder e co-líderes avaliam ao final do mês e anunciam a distribuição. Bilhetes entregues via inventário interno/ chat.</div>
+
+          <div class="section-title">Observações</div>
+          <div class="rule">Reservas por faltas reduzem chances; prêmios revisados mensalmente conforme metas do clã.</div>
         </div>
-      </div>
+      </details>
+    </div>
 
-      <div class="row" aria-hidden="true">
-        <button class="btn primary">Entrar no painel</button>
-        <button class="btn ghost">Ver versão pública</button>
-      </div>
-
+    <div class="btn-row">
+      <a href="painel.html" class="btn btn-enter">Voltar ao Painel</a>
+      <a href="index.html" class="btn btn-ghost">Ir à Home</a>
     </div>
   </div>
 
-<script>
-  // Accordion behavior (accessible)
-  (function(){
-    const head = document.getElementById('acc1btn');
-    const panel = document.getElementById('acc1');
-    const toggle = head.querySelector('.acc-toggle');
-
-    function setOpen(open){
-      if(open){
-        panel.classList.add('open');
-        head.setAttribute('aria-expanded','true');
-        toggle.textContent = '▾';
-      } else {
-        panel.classList.remove('open');
-        head.setAttribute('aria-expanded','false');
-        toggle.textContent = '▸';
-      }
-    }
-
-    head.addEventListener('click', ()=> {
-      const isOpen = head.getAttribute('aria-expanded') === 'true';
-      setOpen(!isOpen);
+  <script>
+    // anima ícone de toggle simples
+    document.querySelectorAll('details').forEach(d=>{
+      const svg = d.querySelector('svg');
+      d.addEventListener('toggle', ()=> {
+        if(d.open) svg.style.transform='rotate(90deg)';
+        else svg.style.transform='rotate(0deg)';
+        svg.style.transition='transform .18s ease';
+      });
     });
-
-    // keyboard support
-    head.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        head.click();
-      } else if(e.key === 'Escape'){
-        setOpen(false);
-        head.focus();
-      }
-    });
-
-    // close by default (you can change to true to open on load)
-    setOpen(false);
-  })();
-</script>
+  </script>
 </body>
 </html>
