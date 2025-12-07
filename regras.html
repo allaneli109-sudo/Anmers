@@ -1,115 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Regras & Premiações — Clã Aimmers</title>
-<style>
-  :root{
-    --bg:#05070a; --panel:#0d1417; --card:#0f171a; --muted:rgba(255,255,255,0.65); --accent:#ff9b1a;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#fff;background:radial-gradient(circle at 50% 10%, #071014 0%, #040607 60%),var(--bg);padding:18px}
-  .wrap{max-width:920px;margin:0 auto}
-  .banner{border-radius:12px;overflow:hidden;margin-bottom:12px}
-  .banner img{width:100%;display:block}
-  h1{margin:6px 0 6px 0;font-size:1.4rem}
-  .lead{color:var(--muted);margin-bottom:14px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:12px;margin-bottom:12px}
-  details{background:var(--panel);border-radius:12px;padding:8px;border:1px solid rgba(255,255,255,0.03)}
-  summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:10px 6px;font-weight:700}
-  summary::-webkit-details-marker{display:none}
-  .summary-left{display:flex;flex-direction:column}
-  .summary-left small{color:var(--muted);font-weight:600}
-  .content{padding:10px 6px;color:var(--muted);line-height:1.45}
-  .section-title{font-weight:800;color:#fff;margin-top:8px;margin-bottom:6px}
-  .rule{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;margin:8px 0;border:1px solid rgba(255,255,255,0.02)}
-  .btn-row{display:flex;gap:12px;margin-top:16px}
-  .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer}
-  .btn-enter{background:linear-gradient(180deg,#ffb35b,#ff9b1a);color:#111;font-weight:800}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-  @media(max-width:480px){body{padding:12px}}
-</style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="banner">
-      <img src="imagens/banner-clan.png" alt="Banner Clã Aimmers" onerror="this.style.opacity=.06"/>
-    </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regras & Premiações — Clã Aimmers</title>
 
-    <h1>Regras & Premiações</h1>
-    <p class="lead">Página privada com regras internas e explicação do sistema de prêmios. Clique em cada bloco para abrir/fechar.</p>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, Arial;
+      background: #0d0f12;
+      color: #e5e7eb;
+      padding: 20px;
+    }
 
-    <!-- Regras -->
-    <div class="card">
-      <details id="regras" open>
-        <summary>
-          <div class="summary-left">
-            <span>REGRAS</span>
-            <small>Regras internas do clã (visão curta e direta)</small>
-          </div>
-          <div aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        </summary>
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
 
-        <div class="content">
-          <div class="section-title">Regras principais</div>
-          <div class="rule"><strong>Meta:</strong> mínimo 2 estrelas; ideal 3 estrelas (PT). Ataque com 1 estrela → reserva.</div>
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
 
-          <div class="section-title">Participação</div>
-          <div class="rule">Só participa quem treina com co-líderes. Treinos: mínimo 1 por semana. Escala por CV (TH15+).</div>
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 18px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
 
-          <div class="section-title">Penalidades</div>
-          <div class="rule">1 falta grave → aviso. 2 faltas → reserva. 3 faltas → saída do clã.</div>
+    .collapse-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 0;
+    }
 
-          <div class="section-title">Hierarquia</div>
-          <div class="rule">Líder: estratégia. Co-líderes: treinos e escalas. Anciões: suporte. Membros: cumprir escalas e treinos.</div>
-        </div>
-      </details>
-    </div>
+    .arrow {
+      transition: 0.3s;
+    }
 
-    <!-- Premiações -->
-    <div class="card">
-      <details id="premiacoes">
-        <summary>
-          <div class="summary-left">
-            <span>PREMIAÇÕES</span>
-            <small>Como são distribuídos prêmios e critérios</small>
-          </div>
-          <div aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        </summary>
+    .collapse-content {
+      display: none;
+      margin-top: 12px;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
 
-        <div class="content">
-          <div class="section-title">Resumo</div>
-          <div class="rule">3–6 bilhetes dourados por mês distribuídos por desempenho: PTs, melhores ataques e participação.</div>
+    .open .collapse-content {
+      display: block;
+    }
 
-          <div class="section-title">Critérios</div>
-          <div class="rule"><strong>Top prioridade:</strong> PTs (3 estrelas consistentes). <strong>Também:</strong> melhores ataques da liga/ guerra e presença em treinos.</div>
+    .open .arrow {
+      transform: rotate(90deg);
+    }
 
-          <div class="section-title">Entrega</div>
-          <div class="rule">Líder e co-líderes avaliam ao final do mês e anunciam a distribuição. Bilhetes entregues via inventário interno/ chat.</div>
+    a.button {
+      display: block;
+      text-align: center;
+      background: #f97316;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+    }
 
-          <div class="section-title">Observações</div>
-          <div class="rule">Reservas por faltas reduzem chances; prêmios revisados mensalmente conforme metas do clã.</div>
-        </div>
-      </details>
-    </div>
-
-    <div class="btn-row">
-      <a href="painel.html" class="btn btn-enter">Voltar ao Painel</a>
-      <a href="index.html" class="btn btn-ghost">Ir à Home</a>
-    </div>
-  </div>
+  </style>
 
   <script>
-    // anima ícone de toggle simples
-    document.querySelectorAll('details').forEach(d=>{
-      const svg = d.querySelector('svg');
-      d.addEventListener('toggle', ()=> {
-        if(d.open) svg.style.transform='rotate(90deg)';
-        else svg.style.transform='rotate(0deg)';
-        svg.style.transition='transform .18s ease';
-      });
-    });
+    function toggleCollapse(id) {
+      const box = document.getElementById(id);
+      box.classList.toggle("open");
+    }
   </script>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Regras & Premiações do Clã</h1>
+
+    <!-- REGRAS -->
+    <div class="card" id="box-regras">
+      <div class="collapse-header" onclick="toggleCollapse('box-regras')">
+        REGRAS
+        <span class="arrow">▶</span>
+      </div>
+
+      <div class="collapse-content">
+        <p><strong>⭐ Meta mínima:</strong> 2 estrelas.<br>
+        <strong>🎯 Meta ideal:</strong> 3 estrelas (PT).<br>
+        1 estrela → vai para reserva.<br>
+        Ataque sem avisar → advertência.</p>
+
+        <p><strong>👥 Participação:</strong><br>
+        Só participa quem treina com co-líderes.<br>
+        Treinos semanais (mínimo 1).<br>
+        Escala por CV (TH15+). Consistência dá prioridade.</p>
+
+        <p><strong>⚠ Penalidades:</strong><br>
+        1 falta grave → aviso.<br>
+        2 faltas → reserva.<br>
+        3 faltas → saída do clã.</p>
+
+        <p><strong>🏹 Guerras & Ligas:</strong><br>
+        Regras valem para ambos.<br>
+        Só vai quem treina, ataca bem e garante PT regularmente.</p>
+      </div>
+    </div>
+
+    <!-- PREMIAÇÕES -->
+    <div class="card" id="box-premios">
+      <div class="collapse-header" onclick="toggleCollapse('box-premios')">
+        PREMIAÇÕES
+        <span class="arrow">▶</span>
+      </div>
+
+      <div class="collapse-content">
+        <p><strong>🎁 Prêmios mensais:</strong><br>
+        Entre <strong>3 a 6 bilhetes dourados</strong> distribuídos mensalmente.</p>
+
+        <p><strong>🏆 Critérios:</strong><br>
+        - PTs garantidos (3 estrelas).<br>
+        - Melhores ataques no mês.<br>
+        - Participação em treinos.<br>
+        - Consistência e disciplina.</p>
+
+        <p><strong>🔰 Hierarquia do clã:</strong><br>
+        Líder → estratégia geral.<br>
+        Co-líderes → treinos e escala.<br>
+        Anciões → suporte e organização.<br>
+        Membros → foco em desempenho.</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="button">⬅ Voltar ao painel</a>
+
+  </div>
 </body>
 </html>
